@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 // bad practice -> reason -> function in route (x)
@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [PageController::class, 'welcome']);
+Route::get('/', [BookController::class, 'welcome'])->name('welcome');
 
-Route::get('/create', [PageController::class, 'createForm']);
+Route::post('/store', [BookController::class, 'store'])->name('store');
+
+Route::get('/create', [BookController::class, 'createBook'])->name('createBook');
 
 // url -> /view -> page view -> tampilin product
