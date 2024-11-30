@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Book</title>
+    <title>Edit Book</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -29,73 +29,44 @@
     </nav>
 
     <div class="p-5">
-        <h1 class="text-center">Create Book</h1>
-        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+        <h1 class="text-center">Edit Book</h1>
+        <form action="{{route('updateBook', $book->id )}}" method="POST" enctype="">
             @csrf
+            @method('patch')
 
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
-                <input value="{{old('title')}}" type="text" class="form-control" id="" name="title">
+                <input value="{{$book->title}}" type="text" class="form-control" id="" name="title">
             </div>
-
-            @error('title')
-                <div class="alert alert-danger" role="alert">
-                    {{$message}}
-                </div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Author</label>
-                <input value="{{old('author')}}" type="text" class="form-control" id="" name="author">
+                <input value="{{$book->author}}" type="text" class="form-control" id="" name="author">
             </div>
-
-            @error('author')
-                <div class="alert alert-danger" role="alert">
-                    {{$message}}
-                </div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Publication Date</label>
-                <input value="{{old('publication_date')}}"type="date" class="form-control" id="" name="publication_date">
+                <input value="{{$book->publication_date}}"type="date" class="form-control" id="" name="publication_date">
             </div>
-
-            @error('publication_date')
-                <div class="alert alert-danger" role="alert">
-                    {{$message}}
-                </div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Stock</label>
-                <input value="{{old('stock')}}" type="number" class="form-control" id="" name="stock">
+                <input value="{{$book->stock}}" type="number" class="form-control" id="" name="stock">
             </div>
 
-            @error('stock')
-                <div class="alert alert-danger" role="alert">
-                    {{$message}}
-                </div>
-            @enderror
-
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="" class="form-label">Image</label>
-                <input type="file" class="form-control" id="" name="image">
-            </div>
+                <input  type="file" class="form-control" id="" name="">
+            </div> --}}
 
-            @error('image')
-                <div class="alert alert-danger" role="alert">
-                    {{$message}}
-                </div>
-            @enderror
-
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="" class="form-label">Category</label>
                 <select class="form-select" aria-label="Default select example" name="category_name">
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

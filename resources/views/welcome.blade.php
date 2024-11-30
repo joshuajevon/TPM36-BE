@@ -39,15 +39,20 @@
     <div class="d-flex flex-row justify-content-center gap-5">
         @foreach ($books as $book)
             <div class="card" style="width: 18rem;">
-                <img src="" class="card-img-top" alt="...">
+                <img src="{{asset('/storage/images/'.$book->image)}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Title: {{$book->title}}</h5>
                     <p class="card-text">Author: {{$book->author}}</p>
                     <p class="card-text">Publication Date: {{$book->publication_date}}</p>
                     <p class="card-text">Stock: {{$book->stock}}</p>
                     <p class="card-text">Category: {{$book->category->category_name}}</p>
-                    <a href="" class="btn btn-success">Edit</a>
-                    <button type="" class="btn btn-danger">Delete</button>
+                    <a href="{{route('editBook', $book->id)}}" class="btn btn-success">Edit</a>
+
+                    <form action="{{route('deleteBook', $book->id)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         @endforeach
